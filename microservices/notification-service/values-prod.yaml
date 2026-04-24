@@ -1,0 +1,41 @@
+notification:
+  image: notification-service
+  replicas: 1
+  port: 8000
+  namespace: backend
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 250m
+      memory: 256Mi
+
+worker:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+db:
+  namespace: db
+  image: postgres:16-alpine
+  replicas: 1
+  port: 5432
+  name: notificationdb
+  user: notificationuser
+  password: notificationpassword
+  storage:
+    size: 5Gi
+
+secrets:
+  postgresUri: "postgresql://notificationuser:notificationpassword@notification-db.db.svc.cluster.local:5432/notificationdb"
+  redisUri: "redis://:redispassword@redis.backend.svc.cluster.local:6379/0"
+
+global:
+  imageTag: "1.0.0"
+  storageClass: nfs-dynamic

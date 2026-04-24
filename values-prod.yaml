@@ -1,5 +1,0 @@
-global:
-  domain: yourdomain.com
-  environment: prod
-  imageTag: "1.0.0"
-  storageClass: nfs-dynamic

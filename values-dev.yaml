@@ -1,5 +1,0 @@
-global:
-  domain: dev.yourdomain.com
-  environment: dev
-  imageTag: latest
-  storageClass: local-path
