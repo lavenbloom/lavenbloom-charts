@@ -1,0 +1,11 @@
+redis:
+  namespace: backend
+  image: redis:7-alpine
+  replicas: 1
+  port: 6379
+  password: redispassword
+  storage:
+    size: 1Gi
+
+global:
+  storageClass: local-path

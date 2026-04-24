@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: habit-db
+  namespace: {{ .Values.db.namespace }}
+  labels:
+    app: habit-db
+spec:
+  serviceName: habit-db-headless
+  replicas: {{ .Values.db.replicas }}
+  selector:
+    matchLabels:
+      app: habit-db
+  template:
+    metadata:
+      labels:
+        app: habit-db
+    spec:
+      containers:
+        - name: postgres
+          image: {{ .Values.db.image }}
+          ports:
+            - containerPort: {{ .Values.db.port }}
+          envFrom:
+            - secretRef:
+                name: habit-db-secret
+          volumeMounts:
+            - name: habit-db-data
+              mountPath: /var/lib/postgresql/data
+              subPath: pgdata
+  volumeClaimTemplates:
+    - metadata:
+        name: habit-db-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: {{ .Values.global.storageClass }}
+        resources:
+          requests:
+            storage: {{ .Values.db.storage.size }}

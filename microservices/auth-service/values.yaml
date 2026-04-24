@@ -1,0 +1,31 @@
+auth:
+  image: auth-service
+  replicas: 1
+  port: 8000
+  namespace: backend
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 250m
+      memory: 256Mi
+
+db:
+  namespace: db
+  image: postgres:16-alpine
+  replicas: 1
+  port: 5432
+  name: authdb
+  user: authuser
+  password: authpassword
+  storage:
+    size: 5Gi
+
+secrets:
+  jwtSecret: supersecretjwtkey
+  postgresUri: "postgresql://authuser:authpassword@auth-db.db.svc.cluster.local:5432/authdb"
+
+global:
+  imageTag: latest
+  storageClass: local-path

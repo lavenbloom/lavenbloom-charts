@@ -1,0 +1,5 @@
+apiVersion: v2
+name: network-policies
+description: Network policies enforcing strict traffic rules for the Lavenbloom platform
+version: 0.1.0
+type: application

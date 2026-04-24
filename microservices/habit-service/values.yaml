@@ -1,0 +1,32 @@
+habit:
+  image: habit-service
+  replicas: 1
+  port: 8000
+  namespace: backend
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 250m
+      memory: 256Mi
+
+db:
+  namespace: db
+  image: postgres:16-alpine
+  replicas: 1
+  port: 5432
+  name: habitdb
+  user: habituser
+  password: habitpassword
+  storage:
+    size: 5Gi
+
+secrets:
+  jwtSecret: supersecretjwtkey
+  postgresUri: "postgresql://habituser:habitpassword@habit-db.db.svc.cluster.local:5432/habitdb"
+  redisUri: "redis://:redispassword@redis.backend.svc.cluster.local:6379/0"
+
+global:
+  imageTag: latest
+  storageClass: local-path

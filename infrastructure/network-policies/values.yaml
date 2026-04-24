@@ -1,0 +1,5 @@
+gatewayNamespace: gateway
+backendNamespace: backend
+dbNamespace: db
+frontendNamespace: frontend
+redisNamespace: backend

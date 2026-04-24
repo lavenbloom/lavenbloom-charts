@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: frontend-route
+  namespace: {{ .Values.routes.frontend.backendNamespace }}
+spec:
+  parentRefs:
+    - name: {{ .Values.gateway.name }}
+      namespace: {{ .Values.routes.frontend.parentGatewayNamespace }}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: {{ .Values.routes.frontend.pathPrefix }}
+      backendRefs:
+        - name: {{ .Values.routes.frontend.backendService }}
+          namespace: {{ .Values.routes.frontend.backendNamespace }}
+          port: {{ .Values.routes.frontend.backendPort }}

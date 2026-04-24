@@ -1,0 +1,5 @@
+apiVersion: v2
+name: redis
+description: Redis StatefulSet for the Lavenbloom platform habit-service queue
+version: 0.1.0
+type: application

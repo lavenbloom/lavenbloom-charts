@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service
+  namespace: {{ .Values.notification.namespace }}
+  labels:
+    app: notification-service
+    tier: backend
+spec:
+  replicas: {{ .Values.notification.replicas }}
+  selector:
+    matchLabels:
+      app: notification-service
+      component: api
+  template:
+    metadata:
+      labels:
+        app: notification-service
+        component: api
+        tier: backend
+    spec:
+      containers:
+        - name: notification-service
+          image: "{{ .Values.notification.image }}:{{ .Values.global.imageTag }}"
+          ports:
+            - containerPort: {{ .Values.notification.port }}
+          envFrom:
+            - secretRef:
+                name: notification-service-secret
+          resources:
+            requests:
+              cpu: {{ .Values.notification.resources.requests.cpu }}
+              memory: {{ .Values.notification.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.notification.resources.limits.cpu }}
+              memory: {{ .Values.notification.resources.limits.memory }}

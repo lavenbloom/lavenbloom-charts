@@ -1,0 +1,183 @@
+# Backend services: only accept ingress from gateway namespace
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend-allow-gateway-only
+  namespace: {{ .Values.backendNamespace }}
+spec:
+  podSelector:
+    matchLabels:
+      tier: backend
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: {{ .Values.gatewayNamespace }}
+
+# Frontend: only accept ingress from gateway namespace
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-allow-gateway-only
+  namespace: {{ .Values.frontendNamespace }}
+spec:
+  podSelector:
+    matchLabels:
+      tier: frontend
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: {{ .Values.gatewayNamespace }}
+
+# Auth DB: only accept ingress from auth-service
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: auth-db-allow-auth-service-only
+  namespace: {{ .Values.dbNamespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: auth-db
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: {{ .Values.backendNamespace }}
+          podSelector:
+            matchLabels:
+              app: auth-service
+
+# Habit DB: only accept ingress from habit-service
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: habit-db-allow-habit-service-only
+  namespace: {{ .Values.dbNamespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: habit-db
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: {{ .Values.backendNamespace }}
+          podSelector:
+            matchLabels:
+              app: habit-service
+
+# Journal DB: only accept ingress from journal-service
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: journal-db-allow-journal-service-only
+  namespace: {{ .Values.dbNamespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: journal-db
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: {{ .Values.backendNamespace }}
+          podSelector:
+            matchLabels:
+              app: journal-service
+
+# Notification DB: only accept ingress from notification-service
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: notification-db-allow-notification-service-only
+  namespace: {{ .Values.dbNamespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: notification-db
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: {{ .Values.backendNamespace }}
+          podSelector:
+            matchLabels:
+              app: notification-service
+
+# Redis: only accept ingress from habit-service
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: redis-allow-habit-service-only
+  namespace: {{ .Values.backendNamespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: redis
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: {{ .Values.backendNamespace }}
+          podSelector:
+            matchLabels:
+              app: habit-service
+
+# Default deny all ingress in backend namespace (no lateral traffic)
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend-default-deny
+  namespace: {{ .Values.backendNamespace }}
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+
+# Default deny all ingress in db namespace
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-default-deny
+  namespace: {{ .Values.dbNamespace }}
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+
+# Default deny all ingress in frontend namespace
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-default-deny
+  namespace: {{ .Values.frontendNamespace }}
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress

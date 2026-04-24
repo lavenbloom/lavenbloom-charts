@@ -1,0 +1,5 @@
+apiVersion: v2
+name: frontend
+description: Frontend nginx deployment for the Lavenbloom platform
+version: 0.1.0
+type: application

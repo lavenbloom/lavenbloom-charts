@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: auth-route
+  namespace: {{ .Values.routes.auth.backendNamespace }}
+spec:
+  parentRefs:
+    - name: {{ .Values.gateway.name }}
+      namespace: {{ .Values.routes.auth.parentGatewayNamespace }}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: {{ .Values.routes.auth.pathPrefix }}
+      backendRefs:
+        - name: {{ .Values.routes.auth.backendService }}
+          namespace: {{ .Values.routes.auth.backendNamespace }}
+          port: {{ .Values.routes.auth.backendPort }}

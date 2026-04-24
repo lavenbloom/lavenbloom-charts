@@ -1,0 +1,49 @@
+gateway:
+  name: lavenbloom-gateway
+  namespace: gateway
+  gatewayClassName: eg
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+
+routes:
+  auth:
+    hostnames: []
+    parentGatewayNamespace: gateway
+    backendService: auth-service
+    backendNamespace: backend
+    backendPort: 8000
+    pathPrefix: /auth
+
+  habit:
+    hostnames: []
+    parentGatewayNamespace: gateway
+    backendService: habit-service
+    backendNamespace: backend
+    backendPort: 8000
+    pathPrefix: /habits
+
+  journal:
+    hostnames: []
+    parentGatewayNamespace: gateway
+    backendService: journal-service
+    backendNamespace: backend
+    backendPort: 8000
+    pathPrefix: /journal
+
+  notification:
+    hostnames: []
+    parentGatewayNamespace: gateway
+    backendService: notification-service
+    backendNamespace: backend
+    backendPort: 8000
+    pathPrefix: /notifications
+
+  frontend:
+    hostnames: []
+    parentGatewayNamespace: gateway
+    backendService: frontend
+    backendNamespace: frontend
+    backendPort: 80
+    pathPrefix: /

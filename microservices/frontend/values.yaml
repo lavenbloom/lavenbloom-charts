@@ -1,0 +1,15 @@
+frontend:
+  image: frontend
+  replicas: 1
+  port: 80
+  namespace: frontend
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 150m
+      memory: 128Mi
+
+global:
+  imageTag: latest

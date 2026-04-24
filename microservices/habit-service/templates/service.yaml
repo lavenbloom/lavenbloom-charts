@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: habit-service
+  namespace: {{ .Values.habit.namespace }}
+  labels:
+    app: habit-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.habit.port }}
+      targetPort: {{ .Values.habit.port }}
+  selector:
+    app: habit-service

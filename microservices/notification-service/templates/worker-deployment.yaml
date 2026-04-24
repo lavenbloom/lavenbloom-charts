@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-worker
+  namespace: {{ .Values.notification.namespace }}
+  labels:
+    app: notification-service
+    component: worker
+    tier: backend
+spec:
+  replicas: {{ .Values.worker.replicas }}
+  selector:
+    matchLabels:
+      app: notification-service
+      component: worker
+  template:
+    metadata:
+      labels:
+        app: notification-service
+        component: worker
+        tier: backend
+    spec:
+      containers:
+        - name: notification-worker
+          image: "{{ .Values.notification.image }}:{{ .Values.global.imageTag }}"
+          command: ["python", "-m", "app.worker"]
+          envFrom:
+            - secretRef:
+                name: notification-service-secret
+          resources:
+            requests:
+              cpu: {{ .Values.worker.resources.requests.cpu }}
+              memory: {{ .Values.worker.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.worker.resources.limits.cpu }}
+              memory: {{ .Values.worker.resources.limits.memory }}

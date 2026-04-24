@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: journal-service
+  namespace: {{ .Values.journal.namespace }}
+  labels:
+    app: journal-service
+    tier: backend
+spec:
+  replicas: {{ .Values.journal.replicas }}
+  selector:
+    matchLabels:
+      app: journal-service
+  template:
+    metadata:
+      labels:
+        app: journal-service
+        tier: backend
+    spec:
+      containers:
+        - name: journal-service
+          image: "{{ .Values.journal.image }}:{{ .Values.global.imageTag }}"
+          ports:
+            - containerPort: {{ .Values.journal.port }}
+          envFrom:
+            - secretRef:
+                name: journal-service-secret
+          resources:
+            requests:
+              cpu: {{ .Values.journal.resources.requests.cpu }}
+              memory: {{ .Values.journal.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.journal.resources.limits.cpu }}
+              memory: {{ .Values.journal.resources.limits.memory }}

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+  namespace: {{ .Values.auth.namespace }}
+  labels:
+    app: auth-service
+    tier: backend
+spec:
+  replicas: {{ .Values.auth.replicas }}
+  selector:
+    matchLabels:
+      app: auth-service
+  template:
+    metadata:
+      labels:
+        app: auth-service
+        tier: backend
+    spec:
+      containers:
+        - name: auth-service
+          image: "{{ .Values.auth.image }}:{{ .Values.global.imageTag }}"
+          ports:
+            - containerPort: {{ .Values.auth.port }}
+          envFrom:
+            - secretRef:
+                name: auth-service-secret
+          resources:
+            requests:
+              cpu: {{ .Values.auth.resources.requests.cpu }}
+              memory: {{ .Values.auth.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.auth.resources.limits.cpu }}
+              memory: {{ .Values.auth.resources.limits.memory }}
