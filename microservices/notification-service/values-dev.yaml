@@ -38,4 +38,4 @@ secrets:
 
 global:
   imageTag: latest
-  storageClass: local-path
+  storageClass: nfs

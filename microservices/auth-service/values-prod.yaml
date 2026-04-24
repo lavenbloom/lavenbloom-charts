@@ -28,4 +28,4 @@ secrets:
 
 global:
   imageTag: "1.0.0"
-  storageClass: nfs-dynamic
+  storageClass: nfs
