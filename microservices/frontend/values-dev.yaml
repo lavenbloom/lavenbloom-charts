@@ -1,7 +1,7 @@
 frontend:
   image:
     repository: rnld101/lavenbloom-frontend
-    tag: dev-a54ab138dde9c5f0ab866e4599eecfbec3173a88
+    tag: dev-ec08c17a049e63c770e8bf2646ffac91bc764bdc
   replicas: 1
   port: 80
   namespace: frontend
