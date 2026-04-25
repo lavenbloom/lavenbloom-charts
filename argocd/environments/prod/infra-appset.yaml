@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/lavenbloom/lavenbloom-charts
         revision: main
         directories:
-          - path: charts/infrastructure/*
+          - path: ./infrastructure/*
   template:
     metadata:
       name: '{{path.basename}}'
