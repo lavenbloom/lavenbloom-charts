@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: habit-service
-  namespace: {{ .Values.habit.namespace }}
+  namespace: {{ .Values.habit-service.namespace }}
   labels:
     app: habit-service
 spec:
   type: ClusterIP
   ports:
-    - port: {{ .Values.habit.port }}
-      targetPort: {{ .Values.habit.port }}
+    - port: {{ .Values.habit-service.port }}
+      targetPort: {{ .Values.habit-service.port }}
   selector:
     app: habit-service

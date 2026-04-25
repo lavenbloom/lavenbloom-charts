@@ -2,12 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: journal-service
-  namespace: {{ .Values.journal.namespace }}
+  namespace: {{ .Values.journal-service.namespace }}
   labels:
     app: journal-service
     tier: backend
 spec:
-  replicas: {{ .Values.journal.replicas }}
+  replicas: {{ .Values.journal-service.replicas }}
   selector:
     matchLabels:
       app: journal-service
@@ -19,16 +19,16 @@ spec:
     spec:
       containers:
         - name: journal-service
-          image: "{{ .Values.journal.image }}:{{ .Values.global.imageTag }}"
+          image: "{{ .Values.journal-service.image.repository }}:{{ .Values.journal-service.image.tag }}"
           ports:
-            - containerPort: {{ .Values.journal.port }}
+            - containerPort: {{ .Values.journal-service.port }}
           envFrom:
             - secretRef:
                 name: journal-service-secret
           resources:
             requests:
-              cpu: {{ .Values.journal.resources.requests.cpu }}
-              memory: {{ .Values.journal.resources.requests.memory }}
+              cpu: {{ .Values.journal-service.resources.requests.cpu }}
+              memory: {{ .Values.journal-service.resources.requests.memory }}
             limits:
-              cpu: {{ .Values.journal.resources.limits.cpu }}
-              memory: {{ .Values.journal.resources.limits.memory }}
+              cpu: {{ .Values.journal-service.resources.limits.cpu }}
+              memory: {{ .Values.journal-service.resources.limits.memory }}

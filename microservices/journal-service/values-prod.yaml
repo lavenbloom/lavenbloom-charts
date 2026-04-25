@@ -1,5 +1,7 @@
-journal:
-  image: journal-service
+journal-service:
+  image:
+    repository: lavenbloom-journal-service
+    tag: "1.0.0"
   replicas: 1
   port: 8000
   namespace: backend
@@ -10,7 +12,6 @@ journal:
     limits:
       cpu: 250m
       memory: 256Mi
-
 db:
   namespace: db
   image: postgres:16-alpine
@@ -21,11 +22,8 @@ db:
   password: journalpassword
   storage:
     size: 5Gi
-
 secrets:
   jwtSecret: supersecretjwtkey
   postgresUri: "postgresql://journaluser:journalpassword@journal-db.db.svc.cluster.local:5432/journaldb"
-
 global:
-  imageTag: "1.0.0"
   storageClass: nfs

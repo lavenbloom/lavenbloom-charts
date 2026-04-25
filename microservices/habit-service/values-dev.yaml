@@ -1,5 +1,7 @@
-habit:
-  image: habit-service
+habit-service:
+  image:
+    repository: lavenbloom-habit-service
+    tag: latest
   replicas: 1
   port: 8000
   namespace: backend
@@ -10,7 +12,6 @@ habit:
     limits:
       cpu: 250m
       memory: 256Mi
-
 db:
   namespace: db
   image: postgres:16-alpine
@@ -21,12 +22,9 @@ db:
   password: habitpassword
   storage:
     size: 5Gi
-
 secrets:
   jwtSecret: supersecretjwtkey
   postgresUri: "postgresql://habituser:habitpassword@habit-db.db.svc.cluster.local:5432/habitdb"
   redisUri: "redis://:redispassword@redis.backend.svc.cluster.local:6379/0"
-
 global:
-  imageTag: latest
   storageClass: nfs

@@ -1,5 +1,7 @@
-notification:
-  image: notification-service
+notification-service:
+  image:
+    repository: lavenbloom-notification-service
+    tag: latest
   replicas: 1
   port: 8000
   namespace: backend
@@ -10,7 +12,6 @@ notification:
     limits:
       cpu: 250m
       memory: 256Mi
-
 worker:
   replicas: 1
   resources:
@@ -20,7 +21,6 @@ worker:
     limits:
       cpu: 200m
       memory: 128Mi
-
 db:
   namespace: db
   image: postgres:16-alpine
@@ -31,11 +31,8 @@ db:
   password: notificationpassword
   storage:
     size: 5Gi
-
 secrets:
   postgresUri: "postgresql://notificationuser:notificationpassword@notification-db.db.svc.cluster.local:5432/notificationdb"
   redisUri: "redis://:redispassword@redis.backend.svc.cluster.local:6379/0"
-
 global:
-  imageTag: latest
   storageClass: nfs

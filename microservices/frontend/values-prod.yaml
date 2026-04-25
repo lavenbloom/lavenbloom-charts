@@ -1,5 +1,7 @@
 frontend:
-  image: frontend
+  image:
+    repository: lavenbloom-frontend
+    tag: "1.0.0"
   replicas: 1
   port: 80
   namespace: frontend
@@ -10,6 +12,3 @@ frontend:
     limits:
       cpu: 150m
       memory: 128Mi
-
-global:
-  imageTag: "1.0.0"

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notification-worker
-  namespace: {{ .Values.notification.namespace }}
+  namespace: {{ .Values.notification-service.namespace }}
   labels:
     app: notification-service
     component: worker
@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: notification-worker
-          image: "{{ .Values.notification.image }}:{{ .Values.global.imageTag }}"
+          image: "{{ .Values.notification-service.image.repository }}:{{ .Values.notification-service.image.tag }}"
           command: ["python", "-m", "app.worker"]
           envFrom:
             - secretRef:
