@@ -1,7 +1,7 @@
 auth-service:
-  image: 
+  image:
     repository: lavenbloom-auth-service
-    tag: "1.0.0"
+    tag: "2.0.0"
   replicas: 1
   port: 8000
   namespace: backend
@@ -12,7 +12,6 @@ auth-service:
     limits:
       cpu: 250m
       memory: 256Mi
-
 db:
   namespace: db
   image: postgres:16-alpine
@@ -23,10 +22,8 @@ db:
   password: authpassword
   storage:
     size: 5Gi
-
 secrets:
   jwtSecret: supersecretjwtkey
   postgresUri: "postgresql://authuser:authpassword@auth-db.db.svc.cluster.local:5432/authdb"
-
 global:
   storageClass: nfs
