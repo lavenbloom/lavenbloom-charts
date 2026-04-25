@@ -20,6 +20,7 @@ spec:
       containers:
         - name: auth-service
           image: "{{ .Values.auth-service.image.repository }}:{{ .Values.auth-service.image.tag }}"
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ .Values.auth-service.port }}
           envFrom:

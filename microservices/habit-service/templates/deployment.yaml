@@ -20,6 +20,7 @@ spec:
       containers:
         - name: habit-service
           image: "{{ .Values.habit-service.image.repository }}:{{ .Values.habit-service.image.tag }}"
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ .Values.habit-service.port }}
           envFrom:

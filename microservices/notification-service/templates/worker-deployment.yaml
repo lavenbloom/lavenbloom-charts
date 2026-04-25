@@ -23,6 +23,7 @@ spec:
       containers:
         - name: notification-worker
           image: "{{ .Values.notification-service.image.repository }}:{{ .Values.notification-service.image.tag }}"
+          imagePullPolicy: IfNotPresent
           command: ["python", "-m", "app.worker"]
           envFrom:
             - secretRef:

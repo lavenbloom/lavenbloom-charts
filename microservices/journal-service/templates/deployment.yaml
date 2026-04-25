@@ -20,6 +20,7 @@ spec:
       containers:
         - name: journal-service
           image: "{{ .Values.journal-service.image.repository }}:{{ .Values.journal-service.image.tag }}"
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ .Values.journal-service.port }}
           envFrom:
