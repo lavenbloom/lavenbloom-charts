@@ -1,4 +1,4 @@
-auth-service:
+authService:
   image:
     repository: lavenbloom-auth-service
     tag: "2.0.0"

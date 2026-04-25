@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notification-worker
-  namespace: {{ .Values.notification-service.namespace }}
+  namespace: {{ .Values.notificationService.namespace }}
   labels:
     app: notification-service
     component: worker
@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: notification-worker
-          image: "{{ .Values.notification-service.image.repository }}:{{ .Values.notification-service.image.tag }}"
+          image: "{{ .Values.notificationService.image.repository }}:{{ .Values.notificationService.image.tag }}"
           imagePullPolicy: IfNotPresent
           command: ["python", "-m", "app.worker"]
           envFrom:

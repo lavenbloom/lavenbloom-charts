@@ -2,12 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth-service
-  namespace: {{ .Values.auth-service.namespace }}
+  namespace: {{ .Values.authService.namespace }}
   labels:
     app: auth-service
     tier: backend
 spec:
-  replicas: {{ .Values.auth-service.replicas }}
+  replicas: {{ .Values.authService.replicas }}
   selector:
     matchLabels:
       app: auth-service
@@ -19,17 +19,17 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: "{{ .Values.auth-service.image.repository }}:{{ .Values.auth-service.image.tag }}"
+          image: "{{ .Values.authService.image.repository }}:{{ .Values.authService.image.tag }}"
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: {{ .Values.auth-service.port }}
+            - containerPort: {{ .Values.authService.port }}
           envFrom:
             - secretRef:
                 name: auth-service-secret
           resources:
             requests:
-              cpu: {{ .Values.auth-service.resources.requests.cpu }}
-              memory: {{ .Values.auth-service.resources.requests.memory }}
+              cpu: {{ .Values.authService.resources.requests.cpu }}
+              memory: {{ .Values.authService.resources.requests.memory }}
             limits:
-              cpu: {{ .Values.auth-service.resources.limits.cpu }}
-              memory: {{ .Values.auth-service.resources.limits.memory }}
+              cpu: {{ .Values.authService.resources.limits.cpu }}
+              memory: {{ .Values.authService.resources.limits.memory }}

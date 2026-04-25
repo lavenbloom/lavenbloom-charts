@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: journal-service
-  namespace: {{ .Values.journal-service.namespace }}
+  namespace: {{ .Values.journalService.namespace }}
   labels:
     app: journal-service
 spec:
   type: ClusterIP
   ports:
-    - port: {{ .Values.journal-service.port }}
-      targetPort: {{ .Values.journal-service.port }}
+    - port: {{ .Values.journalService.port }}
+      targetPort: {{ .Values.journalService.port }}
   selector:
     app: journal-service

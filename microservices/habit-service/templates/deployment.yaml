@@ -2,12 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: habit-service
-  namespace: {{ .Values.habit-service.namespace }}
+  namespace: {{ .Values.habitService.namespace }}
   labels:
     app: habit-service
     tier: backend
 spec:
-  replicas: {{ .Values.habit-service.replicas }}
+  replicas: {{ .Values.habitService.replicas }}
   selector:
     matchLabels:
       app: habit-service
@@ -19,17 +19,17 @@ spec:
     spec:
       containers:
         - name: habit-service
-          image: "{{ .Values.habit-service.image.repository }}:{{ .Values.habit-service.image.tag }}"
+          image: "{{ .Values.habitService.image.repository }}:{{ .Values.habitService.image.tag }}"
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: {{ .Values.habit-service.port }}
+            - containerPort: {{ .Values.habitService.port }}
           envFrom:
             - secretRef:
                 name: habit-service-secret
           resources:
             requests:
-              cpu: {{ .Values.habit-service.resources.requests.cpu }}
-              memory: {{ .Values.habit-service.resources.requests.memory }}
+              cpu: {{ .Values.habitService.resources.requests.cpu }}
+              memory: {{ .Values.habitService.resources.requests.memory }}
             limits:
-              cpu: {{ .Values.habit-service.resources.limits.cpu }}
-              memory: {{ .Values.habit-service.resources.limits.memory }}
+              cpu: {{ .Values.habitService.resources.limits.cpu }}
+              memory: {{ .Values.habitService.resources.limits.memory }}

@@ -1,4 +1,4 @@
-notification-service:
+notificationService:
   image:
     repository: lavenbloom-notification-service
     tag: "1.0.0"

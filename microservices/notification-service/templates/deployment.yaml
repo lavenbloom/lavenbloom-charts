@@ -2,12 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notification-service
-  namespace: {{ .Values.notification-service.namespace }}
+  namespace: {{ .Values.notificationService.namespace }}
   labels:
     app: notification-service
     tier: backend
 spec:
-  replicas: {{ .Values.notification-service.replicas }}
+  replicas: {{ .Values.notificationService.replicas }}
   selector:
     matchLabels:
       app: notification-service
@@ -21,17 +21,17 @@ spec:
     spec:
       containers:
         - name: notification-service
-          image: "{{ .Values.notification-service.image.repository }}:{{ .Values.notification-service.image.tag }}"
+          image: "{{ .Values.notificationService.image.repository }}:{{ .Values.notificationService.image.tag }}"
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: {{ .Values.notification-service.port }}
+            - containerPort: {{ .Values.notificationService.port }}
           envFrom:
             - secretRef:
                 name: notification-service-secret
           resources:
             requests:
-              cpu: {{ .Values.notification-service.resources.requests.cpu }}
-              memory: {{ .Values.notification-service.resources.requests.memory }}
+              cpu: {{ .Values.notificationService.resources.requests.cpu }}
+              memory: {{ .Values.notificationService.resources.requests.memory }}
             limits:
-              cpu: {{ .Values.notification-service.resources.limits.cpu }}
-              memory: {{ .Values.notification-service.resources.limits.memory }}
+              cpu: {{ .Values.notificationService.resources.limits.cpu }}
+              memory: {{ .Values.notificationService.resources.limits.memory }}

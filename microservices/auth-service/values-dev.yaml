@@ -1,4 +1,4 @@
-auth-service:
+authService:
   image:
     repository: lavenbloom-auth-service
     tag: dev-dab9e8cdafd789972c948b1db8e2c3a7520092cc

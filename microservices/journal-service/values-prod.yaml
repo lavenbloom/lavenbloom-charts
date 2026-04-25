@@ -1,4 +1,4 @@
-journal-service:
+journalService:
   image:
     repository: lavenbloom-journal-service
     tag: "1.0.1"
