@@ -10,4 +10,7 @@ spec:
     - name: {{ .name }}
       protocol: {{ .protocol }}
       port: {{ .port }}
+      allowedRoutes:
+        namespaces:
+          from: All
     {{- end }}
