@@ -24,7 +24,7 @@ spec:
         - name: notification-worker
           image: "{{ .Values.notificationService.image.repository }}:{{ .Values.notificationService.image.tag }}"
           imagePullPolicy: IfNotPresent
-          command: ["python", "-m", "app.worker"]
+          command: ["python", "-c", "from app.worker import process_queue; process_queue()"]
           envFrom:
             - secretRef:
                 name: notification-service-secret
