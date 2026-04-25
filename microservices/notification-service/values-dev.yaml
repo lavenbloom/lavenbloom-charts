@@ -36,3 +36,6 @@ secrets:
   redisUri: "redis://:redispassword@redis.backend.svc.cluster.local:6379/0"
 global:
   storageClass: nfs
+notification-service:
+  image:
+    tag: dev-d54ea11b1a409f31cfb0940824cddd7f846f1fd2
