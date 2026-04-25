@@ -8,4 +8,4 @@ redis:
     size: 1Gi
 
 global:
-  storageClass: local-path
+  storageClass: nfs
