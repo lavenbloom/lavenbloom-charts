@@ -1,6 +1,6 @@
 frontend:
   image:
-    repository: lavenbloom/lavenbloom-frontend
+    repository: rnld101/lavenbloom-frontend
     tag: "1.0.0"
   replicas: 1
   port: 80
