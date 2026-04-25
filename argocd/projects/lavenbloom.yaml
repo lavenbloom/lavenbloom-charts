@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: lavenbloom
+  namespace: argocd
+  description: Lavenbloom project for infrastructure and microservices
+spec:
+  # Allow manifests from our GitOps repository
+  sourceRepos:
+    - 'https://github.com/lavenbloom/lavenbloom-charts'
+  
+  # Allow deployments to any namespace within the in-cluster Argo CD
+  destinations:
+    - namespace: '*'
+      server: https://kubernetes.default.svc
+  
+  # Whitelist all cluster resources since infra charts might need CRDs, ClusterRoles, etc.
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'

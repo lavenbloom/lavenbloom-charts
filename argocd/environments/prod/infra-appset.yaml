@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: prod-infrastructure
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/lavenbloom/lavenbloom-charts
+        revision: main
+        directories:
+          - path: charts/infrastructure/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: lavenbloom
+      source:
+        repoURL: https://github.com/lavenbloom/lavenbloom-charts
+        targetRevision: main
+        path: '{{path}}'
+        helm:
+          valueFiles:
+            - values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
