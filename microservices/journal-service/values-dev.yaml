@@ -1,7 +1,7 @@
 journal-service:
   image:
     repository: lavenbloom-journal-service
-    tag: dev-e4d1246dfbfa8c9b189f5b83e3261fc95852beec
+    tag: dev-278a7d0bb202786eb0caf1c0f2a20de177a02b70
   replicas: 1
   port: 8000
   namespace: backend
