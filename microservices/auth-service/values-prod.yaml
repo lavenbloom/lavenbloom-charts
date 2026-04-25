@@ -1,5 +1,7 @@
-auth:
-  image: auth-service
+auth-service:
+  image: 
+    repository: lavenbloom-auth-service
+    tag: "1.0.0"
   replicas: 1
   port: 8000
   namespace: backend
@@ -27,5 +29,4 @@ secrets:
   postgresUri: "postgresql://authuser:authpassword@auth-db.db.svc.cluster.local:5432/authdb"
 
 global:
-  imageTag: "1.0.0"
   storageClass: nfs
