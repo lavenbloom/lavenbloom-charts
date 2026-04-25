@@ -1,7 +1,7 @@
 frontend:
   image:
     repository: lavenbloom-frontend
-    tag: latest
+    tag: dev-38b6f13969d9fa2fdb00690b4b49ae3ba7959e86
   replicas: 1
   port: 80
   namespace: frontend
