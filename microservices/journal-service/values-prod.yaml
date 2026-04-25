@@ -1,6 +1,6 @@
 journalService:
   image:
-    repository: lavenbloom-journal-service
+    repository: lavenbloom/lavenbloom-journal-service
     tag: "1.0.1"
   replicas: 1
   port: 8000

@@ -1,6 +1,6 @@
 habitService:
   image:
-    repository: lavenbloom-habit-service
+    repository: lavenbloom/lavenbloom-habit-service
     tag: "1.0.0"
   replicas: 1
   port: 8000

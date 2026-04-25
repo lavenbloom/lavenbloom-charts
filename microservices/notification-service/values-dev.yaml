@@ -1,6 +1,6 @@
 notificationService:
   image:
-    repository: lavenbloom-notification-service
+    repository: lavenbloom/lavenbloom-notification-service
     tag: dev-847abfeff07f8b70384376ebeb1b111b5c1b186a
   replicas: 1
   port: 8000
