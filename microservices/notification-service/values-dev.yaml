@@ -1,7 +1,7 @@
 notification-service:
   image:
     repository: lavenbloom-notification-service
-    tag: latest
+    tag: dev-1cb7beec853c6ed8e41f0d66b39b329a31a16c27
   replicas: 1
   port: 8000
   namespace: backend
