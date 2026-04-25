@@ -22,7 +22,7 @@ routes:
     backendService: habit-service
     backendNamespace: backend
     backendPort: 8000
-    pathPrefix: /habits
+    pathPrefix: /habit
 
   journal:
     hostnames: []

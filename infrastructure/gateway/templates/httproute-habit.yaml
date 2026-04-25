@@ -12,6 +12,12 @@ spec:
         - path:
             type: PathPrefix
             value: {{ .Values.routes.habit.pathPrefix }}
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
       backendRefs:
         - name: {{ .Values.routes.habit.backendService }}
           namespace: {{ .Values.routes.habit.backendNamespace }}

@@ -12,6 +12,12 @@ spec:
         - path:
             type: PathPrefix
             value: {{ .Values.routes.auth.pathPrefix }}
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
       backendRefs:
         - name: {{ .Values.routes.auth.backendService }}
           namespace: {{ .Values.routes.auth.backendNamespace }}
