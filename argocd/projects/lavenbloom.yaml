@@ -3,8 +3,9 @@ kind: AppProject
 metadata:
   name: lavenbloom
   namespace: argocd
-  description: Lavenbloom project for infrastructure and microservices
+  
 spec:
+  description: Lavenbloom project for infrastructure and microservices
   # Allow manifests from our GitOps repository
   sourceRepos:
     - 'https://github.com/lavenbloom/lavenbloom-charts'
