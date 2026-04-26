@@ -1,0 +1,20 @@
+{{- if .Values.gatewayParameters.enabled }}
+apiVersion: gateway.kgateway.dev/v1alpha1
+kind: GatewayParameters
+metadata:
+  name: {{ .Values.gatewayParameters.name }}
+  namespace: {{ .Values.gateway.namespace }}
+spec:
+  kube:
+    service:
+      type: {{ .Values.gatewayParameters.serviceType }}
+      {{- if .Values.gatewayParameters.nodePorts }}
+      ports:
+        {{- range .Values.gatewayParameters.nodePorts }}
+        - port: {{ .port }}
+          protocol: TCP
+          targetPort: {{ .targetPort }}
+          nodePort: {{ .nodePort }}
+        {{- end }}
+      {{- end }}
+{{- end }}

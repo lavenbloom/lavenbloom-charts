@@ -6,6 +6,19 @@ gateway:
     - name: http
       protocol: HTTP
       port: 80
+  parametersRef:
+    group: gateway.kgateway.dev
+    kind: GatewayParameters
+    name: lavenbloom-gw-params
+
+gatewayParameters:
+  enabled: true
+  name: lavenbloom-gw-params
+  serviceType: NodePort
+  nodePorts:
+    - port: 80
+      targetPort: 8080
+      nodePort: 30080
 
 routes:
   auth:

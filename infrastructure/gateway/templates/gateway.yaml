@@ -5,6 +5,13 @@ metadata:
   namespace: {{ .Values.gateway.namespace }}
 spec:
   gatewayClassName: {{ .Values.gateway.gatewayClassName }}
+  {{- if .Values.gateway.parametersRef }}
+  infrastructure:
+    parametersRef:
+      group: {{ .Values.gateway.parametersRef.group }}
+      kind: {{ .Values.gateway.parametersRef.kind }}
+      name: {{ .Values.gateway.parametersRef.name }}
+  {{- end }}
   listeners:
     {{- range .Values.gateway.listeners }}
     - name: {{ .name }}
