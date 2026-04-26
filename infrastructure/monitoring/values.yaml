@@ -1,7 +1,5 @@
 # -- kube-prometheus-stack configuration --
 kube-prometheus-stack:
-  namespaceOverride: monitoring
-
   grafana:
     enabled: true
     adminUser: admin
