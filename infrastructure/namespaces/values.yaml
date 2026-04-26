@@ -3,4 +3,3 @@ namespaces:
   - backend
   - db
   - frontend
-  - monitoring
