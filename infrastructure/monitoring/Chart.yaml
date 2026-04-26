@@ -1,0 +1,15 @@
+apiVersion: v2
+name: monitoring
+description: Prometheus, Grafana, and Loki monitoring stack for the Lavenbloom platform
+version: 0.1.0
+type: application
+dependencies:
+  - name: kube-prometheus-stack
+    version: "72.6.2"
+    repository: https://prometheus-community.github.io/helm-charts
+  - name: loki
+    version: "6.30.1"
+    repository: https://grafana.github.io/helm-charts
+  - name: promtail
+    version: "6.16.6"
+    repository: https://grafana.github.io/helm-charts
