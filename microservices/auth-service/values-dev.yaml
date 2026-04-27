@@ -27,6 +27,3 @@ secrets:
   postgresUri: "postgresql://authuser:authpassword@auth-db.db.svc.cluster.local:5432/authdb"
 global:
   storageClass: nfs
-auth-service:
-  image:
-    tag: dev-d418960955bd806298b327a0cc14378a60e556b8
