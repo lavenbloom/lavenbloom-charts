@@ -26,13 +26,7 @@ db:
   image: postgres:16-alpine
   replicas: 1
   port: 5432
-  name: notificationdb
-  user: notificationuser
-  password: notificationpassword
   storage:
     size: 5Gi
-secrets:
-  postgresUri: "postgresql://notificationuser:notificationpassword@notification-db.db.svc.cluster.local:5432/notificationdb"
-  redisUri: "redis://:redispassword@redis.backend.svc.cluster.local:6379/0"
 global:
   storageClass: nfs

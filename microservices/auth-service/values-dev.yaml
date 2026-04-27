@@ -17,13 +17,7 @@ db:
   image: postgres:16-alpine
   replicas: 1
   port: 5432
-  name: authdb
-  user: authuser
-  password: authpassword
   storage:
     size: 5Gi
-secrets:
-  jwtSecret: supersecretjwtkey
-  postgresUri: "postgresql://authuser:authpassword@auth-db.db.svc.cluster.local:5432/authdb"
 global:
   storageClass: nfs
