@@ -1,7 +1,7 @@
 authService:
   image:
     repository: rnld101/lavenbloom-auth-service
-    tag: dev-dab9e8cdafd789972c948b1db8e2c3a7520092cc
+    tag: dev-2192484c87233cf4a58a84c442411c0d366dca7d
   replicas: 1
   port: 8000
   namespace: backend
@@ -21,3 +21,6 @@ db:
     size: 5Gi
 global:
   storageClass: nfs
+auth-service:
+  image:
+    tag: dev-d418960955bd806298b327a0cc14378a60e556b8
