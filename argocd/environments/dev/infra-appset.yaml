@@ -7,7 +7,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/lavenbloom/lavenbloom-charts
-        revision: main
+        revision: develop
         directories:
           - path: infrastructure/*
   template:
@@ -17,7 +17,7 @@ spec:
       project: lavenbloom
       source:
         repoURL: https://github.com/lavenbloom/lavenbloom-charts
-        targetRevision: main
+        targetRevision: develop
         path: '{{path}}'
         helm:
           valueFiles:
