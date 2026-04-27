@@ -1,7 +1,7 @@
 habitService:
   image:
     repository: rnld101/lavenbloom-habit-service
-    tag: dev-f8c6d3bea5b88b7b2a4f8a4411f8ff57fa126f40
+    tag: dev-1e633492c8774fe561b1f66f1ae1ce0ab80bf9f3
   replicas: 1
   port: 8000
   namespace: backend
